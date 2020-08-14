@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth.common.OAuthException;
 import org.springframework.security.oauth.common.signature.SharedConsumerSecretImpl;
 import org.springframework.security.oauth.common.signature.SignatureSecret;
@@ -13,7 +12,7 @@ import org.springframework.security.oauth.provider.ConsumerDetails;
 import org.springframework.security.oauth.provider.ConsumerDetailsService;
 import org.springframework.security.oauth.provider.ExtraTrustConsumerDetails;
 
-public class OAuthConsumerDetailsService implements ConsumerDetailsService {
+public final class OAuthConsumerDetailsService implements ConsumerDetailsService {
 	private final String consumerName = "John";
 	private final String consumerKey = "3a4393c3da1a4e316ee66c0cc61c71";
 	private final String consumerSecret = "fe1372c074185b19c309964812bb8f3f2256ba514aea8a318";

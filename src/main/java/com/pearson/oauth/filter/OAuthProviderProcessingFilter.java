@@ -7,8 +7,7 @@ import org.springframework.security.oauth.provider.filter.ProtectedResourceProce
 import org.springframework.security.oauth.provider.nonce.OAuthNonceServices;
 import org.springframework.security.oauth.provider.token.OAuthProviderTokenServices;
 
-public class OAuthProviderProcessingFilter extends ProtectedResourceProcessingFilter {
-
+public final class OAuthProviderProcessingFilter extends ProtectedResourceProcessingFilter {
 	public OAuthProviderProcessingFilter(ConsumerDetailsService oAuthConsumerDetailsService,
 			OAuthNonceServices oAuthNonceServices, OAuthProcessingFilterEntryPoint oAuthProcessingFilterEntryPoint,
 			OAuthAuthenticationHandler oAuthAuthenticationHandler,

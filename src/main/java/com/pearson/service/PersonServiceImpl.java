@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import com.pearson.model.Person;
 
 @Service
-public class PersonServiceImpl implements PersonService {
+public final class PersonServiceImpl implements PersonService {
 	private final RestTemplate restTemplate;
 
 	public PersonServiceImpl(RestTemplateBuilder restTemplateBuilder) {

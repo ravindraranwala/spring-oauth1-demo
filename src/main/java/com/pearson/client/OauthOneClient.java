@@ -5,9 +5,9 @@ import org.springframework.security.oauth.consumer.BaseProtectedResourceDetails;
 import org.springframework.security.oauth.consumer.client.OAuthRestTemplate;
 import org.springframework.web.client.RestTemplate;
 
-public class TestClient {
-	static final String CLIENT_SECRET = "fe1372c074185b19c309964812bb8f3f2256ba514aea8a318";
+class OauthOneClient {
 	static final String CLIENT_ID = "3a4393c3da1a4e316ee66c0cc61c71";
+	static final String CLIENT_SECRET = "fe1372c074185b19c309964812bb8f3f2256ba514aea8a318";
 
 	public static void main(String[] args) {
 		final BaseProtectedResourceDetails resourceDetails = new BaseProtectedResourceDetails();
