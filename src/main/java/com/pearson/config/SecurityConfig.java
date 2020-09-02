@@ -10,6 +10,7 @@ import org.springframework.security.oauth.provider.nonce.InMemoryNonceServices;
 import org.springframework.security.oauth.provider.token.InMemoryProviderTokenServices;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
+import com.pearson.oauth.ConsumerDetailsInMemoryStorageStrategy;
 import com.pearson.oauth.OAuthConsumerDetailsService;
 import com.pearson.oauth.filter.OAuthProviderProcessingFilter;
 
@@ -20,7 +21,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.antMatcher("/**")
 				.addFilterAfter(
-						new OAuthProviderProcessingFilter(new OAuthConsumerDetailsService(),
+						new OAuthProviderProcessingFilter(
+								new OAuthConsumerDetailsService(new ConsumerDetailsInMemoryStorageStrategy()),
 								new InMemoryNonceServices(), new OAuthProcessingFilterEntryPoint(),
 								new DefaultAuthenticationHandler(), new InMemoryProviderTokenServices()),
 						BasicAuthenticationFilter.class)
