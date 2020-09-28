@@ -26,6 +26,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 								new InMemoryNonceServices(), new OAuthProcessingFilterEntryPoint(),
 								new DefaultAuthenticationHandler(), new InMemoryProviderTokenServices()),
 						BasicAuthenticationFilter.class)
-				.authorizeRequests().anyRequest().authenticated();
+				.authorizeRequests().anyRequest().authenticated().and().csrf().disable();
 	}
 }

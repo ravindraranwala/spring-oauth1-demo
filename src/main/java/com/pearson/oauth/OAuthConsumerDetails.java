@@ -12,11 +12,10 @@ import org.springframework.security.oauth.provider.ExtraTrustConsumerDetails;
 
 /**
  * A skeletal implementation of the {@link ConsumerDetails} interface provided
- * by oauth library. This uses the default implementation of a signature secret.
- * For most of the clients using the default behavior, this implementation would
- * be suffice and are encouraged to use this. For others, looking for some
- * specific behavior for the implementation of a signature secret, will have to
- * write one similar to this by their own according to their needs.
+ * by oauth library. For most of the clients using the default behavior, this
+ * implementation would be suffice and are encouraged to use this. For others,
+ * looking for some specific behavior, will have to write one similar to this by
+ * their own according to their needs.
  * 
  * @author ravindra
  *

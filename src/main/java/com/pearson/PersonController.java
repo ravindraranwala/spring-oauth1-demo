@@ -6,7 +6,9 @@ import javax.validation.constraints.Min;
 
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,8 +31,13 @@ public class PersonController {
 		return personService.getPersonById(id);
 	}
 
-	@GetMapping()
+	@GetMapping
 	Collection<Person> getAllPeople() {
 		return personService.getAllPeople();
+	}
+	
+	@PostMapping
+	Person createPerson(@ModelAttribute String greeting) {
+		return new Person(1, "test name", "PhD", "Scientific");
 	}
 }
