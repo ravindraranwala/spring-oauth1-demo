@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth.provider.DefaultAuthenticationHandler;
 import org.springframework.security.oauth.provider.OAuthProcessingFilterEntryPoint;
+import org.springframework.security.oauth.provider.filter.CoreOAuthProviderSupport;
 import org.springframework.security.oauth.provider.nonce.InMemoryNonceServices;
 import org.springframework.security.oauth.provider.token.InMemoryProviderTokenServices;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
@@ -17,15 +18,19 @@ import com.pearson.oauth.filter.OAuthProviderProcessingFilter;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		CoreOAuthProviderSupport oauthProviderSupport = new CoreOAuthProviderSupport();
+		oauthProviderSupport.setBaseUrl("https://socket-dev5.pearsoned.com");
 		http.antMatcher("/**")
 				.addFilterAfter(
 						new OAuthProviderProcessingFilter(
 								new OAuthConsumerDetailsService(new ConsumerDetailsInMemoryStorageStrategy()),
 								new InMemoryNonceServices(), new OAuthProcessingFilterEntryPoint(),
-								new DefaultAuthenticationHandler(), new InMemoryProviderTokenServices()),
+								new DefaultAuthenticationHandler(), new InMemoryProviderTokenServices(), oauthProviderSupport),
 						BasicAuthenticationFilter.class)
 				.authorizeRequests().anyRequest().authenticated().and().csrf().disable();
+
 	}
 }
