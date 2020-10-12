@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.security.oauth.common.signature.SharedConsumerSecretImpl;
 import org.springframework.security.oauth.consumer.BaseProtectedResourceDetails;
@@ -17,8 +18,8 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 class OauthOneClient {
-	static final String CLIENT_ID = "3a4393c3da1a4e316ee66c0cc61c71";
-	static final String CLIENT_SECRET = "fe1372c074185b19c309964812bb8f3f2256ba514aea8a318";
+	static final String CLIENT_ID = "10022d8f-b47b-4de9-921c-b98f703da9fd";
+	static final String CLIENT_SECRET = "wablwQBF";
 
 	public static void main(String[] args) throws MalformedURLException {
 		final BaseProtectedResourceDetails resourceDetails = new BaseProtectedResourceDetails();
@@ -27,15 +28,15 @@ class OauthOneClient {
 
 		// Send oauth credentials inside HTTP headers.
 		final RestTemplate restClient = new OAuthRestTemplate(resourceDetails);
-		String requestUrl = "http://localhost:8080/person";
-		String response = restClient.getForObject(requestUrl, String.class);
-		System.out.println(response);
+		String requestUrl = "http://socket-dev5.pearsoned.com/person";
+		 String response = restClient.getForObject(requestUrl, String.class);
+		 System.out.println(response);
 
 		// Send oauth credentials as form parameters.
 		final OauthConsumerSupportWrapper consumerSupport = new OauthConsumerSupportWrapper();
-		final String httpMethod = "POST";
+		final String newUrl = new StringBuilder(requestUrl).append("?name=bloch").toString();
 		final Map<String, Set<CharSequence>> oAuthParameters = consumerSupport.loadOAuthParameters(resourceDetails,
-				new URL(requestUrl), null, httpMethod, null);
+				new URL(newUrl), null, HttpMethod.POST.toString(), null);
 		System.out.println(oAuthParameters);
 
 		final MultiValueMap<String, CharSequence> map = new LinkedMultiValueMap<>();
@@ -47,7 +48,7 @@ class OauthOneClient {
 		final HttpEntity<MultiValueMap<String, CharSequence>> request = new HttpEntity<>(map, headers);
 
 		final RestTemplate restTmpl = new RestTemplate();
-		String formResponse = restTmpl.postForObject("http://localhost:8080/person", request, String.class);
+		String formResponse = restTmpl.postForObject(newUrl, request, String.class);
 		System.out.println(formResponse);
 
 	}

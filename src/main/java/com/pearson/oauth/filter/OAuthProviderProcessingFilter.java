@@ -20,6 +20,7 @@ public final class OAuthProviderProcessingFilter extends ProtectedResourceProces
 		setConsumerDetailsService(oAuthConsumerDetailsService);
 		setNonceServices(oAuthNonceServices);
 		setTokenServices(oAuthProviderTokenServices);
+		setProviderSupport(oauthProviderSupport);
 		// setIgnoreMissingCredentials(false); // die if OAuth params are not included
 	}
 

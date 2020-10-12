@@ -21,16 +21,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		http.csrf().disable().headers().frameOptions().disable();
 		CoreOAuthProviderSupport oauthProviderSupport = new CoreOAuthProviderSupport();
-		oauthProviderSupport.setBaseUrl("https://socket-dev5.pearsoned.com");
-		http.antMatcher("/**")
+		oauthProviderSupport.setBaseUrl("http://socket-dev5.pearsoned.com");
+		http.requestMatchers().antMatchers("/**").and()
 				.addFilterAfter(
 						new OAuthProviderProcessingFilter(
 								new OAuthConsumerDetailsService(new ConsumerDetailsInMemoryStorageStrategy()),
 								new InMemoryNonceServices(), new OAuthProcessingFilterEntryPoint(),
 								new DefaultAuthenticationHandler(), new InMemoryProviderTokenServices(), oauthProviderSupport),
 						BasicAuthenticationFilter.class)
-				.authorizeRequests().anyRequest().authenticated().and().csrf().disable();
+				.authorizeRequests().anyRequest().authenticated();
 
 	}
 }
