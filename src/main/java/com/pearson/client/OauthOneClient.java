@@ -29,8 +29,8 @@ class OauthOneClient {
 		// Send oauth credentials inside HTTP headers.
 		final RestTemplate restClient = new OAuthRestTemplate(resourceDetails);
 		String requestUrl = "http://socket-dev5.pearsoned.com/person";
-		 String response = restClient.getForObject(requestUrl, String.class);
-		 System.out.println(response);
+		String response = restClient.getForObject(requestUrl, String.class);
+		System.out.println(response);
 
 		// Send oauth credentials as form parameters.
 		final OauthConsumerSupportWrapper consumerSupport = new OauthConsumerSupportWrapper();
