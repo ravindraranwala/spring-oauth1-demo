@@ -3,6 +3,7 @@ package com.pearson.client;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
@@ -36,7 +37,7 @@ class OauthOneClient {
 		final OauthConsumerSupportWrapper consumerSupport = new OauthConsumerSupportWrapper();
 		final String newUrl = new StringBuilder(requestUrl).append("?name=bloch").toString();
 		final Map<String, Set<CharSequence>> oAuthParameters = consumerSupport.loadOAuthParameters(resourceDetails,
-				new URL(newUrl), null, HttpMethod.POST.toString(), null);
+				new URL(newUrl), null, HttpMethod.POST.toString(), Collections.emptyMap());
 		System.out.println(oAuthParameters);
 
 		final MultiValueMap<String, CharSequence> map = new LinkedMultiValueMap<>();
